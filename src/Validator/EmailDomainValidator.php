@@ -9,9 +9,11 @@ use Symfony\Component\Validator\ConstraintValidator;
 class EmailDomainValidator extends ConstraintValidator
 {
     private $configRepository;
+    private $globalBlocked=[];
 
-    public function __construct(ConfigRepository $configRepository)
+    public function __construct(ConfigRepository $configRepository, $globalBlockedDomains = '')
     {
+        $this->globalBlocked = explode(',', $globalBlockedDomains);
         $this->configRepository = $configRepository;
     }
 
@@ -25,6 +27,8 @@ class EmailDomainValidator extends ConstraintValidator
         }
 
         $domain = substr($value, strpos($value, '@') + 1);
+        $blockedDomain = array_merge($constraint->blocked, 
+        $this->configRepository->getAsArray('blocked_domains'), $this->globalBlocked);
         if(in_array($domain, $constraint->blocked)){
             // TODO: implement the validation here
             $this->context->buildViolation($constraint->message)

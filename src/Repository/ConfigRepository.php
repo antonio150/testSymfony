@@ -21,6 +21,12 @@ class ConfigRepository extends ServiceEntityRepository
         parent::__construct($registry, Config::class);
     }
 
+    public function getAsArray(): array
+    {
+        // TODO 
+        return [];
+    }
+
     //    /**
     //     * @return Config[] Returns an array of Config objects
     //     */
