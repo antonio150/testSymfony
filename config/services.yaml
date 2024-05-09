@@ -26,4 +26,4 @@ services:
     App\Validator\EmailDomainValidator:
         class: App\Validator\emailDomainValidator
         arguments: 
-            $globalBlockedDomains: 'globalblocked.fr, test.fr'
+            $globalBlockedDomains: 'globalblocked.fr'

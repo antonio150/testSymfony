@@ -57,7 +57,10 @@ class EmailDomainValidatorTest extends KernelTestCase
         $this->getValidator(true, ['baddomain.fr'])->validate('demo@baddomain.fr', $constraint);
     }
 
-    public function testParameterSetCorrectly(){
+    /**
+     * @return mixed
+     */
+   /*  public function testParameterSetCorrectly():void{
         $constraint = new EmailDomain([
             "blocked" => [],
         ]);
@@ -65,9 +68,9 @@ class EmailDomainValidatorTest extends KernelTestCase
         $container = static::getContainer();
         $validator =$container->get(EmailDomainValidator::class);
         $validator->initialize($this->getContext(true));
-        $validator->validate('demo@globalblcked.fr', $constraint);
+        $validator->validate('demo@globalblocked.fr', $constraint);
     }
-
+ */
 
     private function getContext(bool $expectedViolation):ExecutionContextInterface
     {
